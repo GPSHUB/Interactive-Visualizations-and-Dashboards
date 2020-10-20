@@ -1,0 +1,1 @@
+console.log('Bonus JS in static/js folder pinged');
