@@ -15,7 +15,6 @@ function buildCharts(id) {
             .append("p").text(`${key}: ${value}`)
         );
         
-     
         let topTenSampleValues =  filterData[0].sample_values.slice(0,10).reverse();             
         let topTenOTU = filterData[0].otu_ids.slice(0,10).reverse();     
         let topTenOTULabels =  filterData[0].otu_labels.slice(0,10).reverse();  
@@ -35,7 +34,7 @@ function buildCharts(id) {
             mode: 'markers',
             marker: { size: 16 },
             text: topTenOTULabels,
-            type: 'bar',
+            type: 'bar',            
             orientation: 'h'
         };
         
