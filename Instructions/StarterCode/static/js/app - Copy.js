@@ -15,11 +15,40 @@ function buildCharts(id) {
             .append("p").text(`${key}: ${value}`)
         );
         
-     
-        let topTenSampleValues =  filterData[0].sample_values.slice(0,10).reverse();             
-        let topTenOTU = filterData[0].otu_ids.slice(0,10).reverse();     
-        let topTenOTULabels =  filterData[0].otu_labels.slice(0,10).reverse();  
-        
+        // MEILI - IS THERE A CLEANER WAY TO DO THIS?
+        let topTenSampleValues = [
+            filterData[0].sample_values[0], 
+            filterData[0].sample_values[1], 
+            filterData[0].sample_values[2], 
+            filterData[0].sample_values[3], 
+            filterData[0].sample_values[4], 
+            filterData[0].sample_values[5], 
+            filterData[0].sample_values[6], 
+            filterData[0].sample_values[7], 
+            filterData[0].sample_values[8], 
+            filterData[0].sample_values[9]]
+        let topTenOTU = [
+            filterData[0].otu_ids[0], 
+            filterData[0].otu_ids[1], 
+            filterData[0].otu_ids[2], 
+            filterData[0].otu_ids[3], 
+            filterData[0].otu_ids[4], 
+            filterData[0].otu_ids[5], 
+            filterData[0].otu_ids[6], 
+            filterData[0].otu_ids[7], 
+            filterData[0].otu_ids[8], 
+            filterData[0].otu_ids[9]]
+        let topTenOTULabels = [
+            filterData[0].otu_labels[0], 
+            filterData[0].otu_labels[1], 
+            filterData[0].otu_labels[2], 
+            filterData[0].otu_labels[3], 
+            filterData[0].otu_labels[4], 
+            filterData[0].otu_labels[5], 
+            filterData[0].otu_labels[6], 
+            filterData[0].otu_labels[7], 
+            filterData[0].otu_labels[8], 
+            filterData[0].otu_labels[9]]
             
         let labelArray = []
 
@@ -30,7 +59,7 @@ function buildCharts(id) {
         
         // Create the Trace
         let trace1 = {
-            x: topTenSampleValues,
+            x: topTenSampleValues.reverse(),
             y: labelArray,
             mode: 'markers',
             marker: { size: 16 },
@@ -67,8 +96,8 @@ function buildCharts(id) {
         let bubbleData = [bubbleTrace];
         let bubbleLayout = {
             title: 'Marker Size',
-            xaxis: { title: "Top 10 OTU" },
-            yaxis: { title: "Top 10 OTU Values" },
+            xaxis: { title: "TK1" },
+            yaxis: { title: "TK2" },
             showlegend: false,
             height: 600,
             width: 1200
@@ -78,8 +107,7 @@ function buildCharts(id) {
 }
 //sends new id in everytime drop down changes
 function optionChanged(dropDownValue) {
-    buildCharts(dropDownValue);
-    gauge_chart(dropDownValue)
+    buildCharts(dropDownValue)
 }
 function init() {    
     let dropDownBtn = d3.select("#selDataset");
@@ -99,8 +127,7 @@ function init() {
             Object.entries(demo).forEach(
                 ([key, value]) => d3.select("#sample-metadata").append("p").text(`${key}: ${value}`)
             );
-            buildCharts(names[0]);
-            gauge_chart(names[0]);
+            buildCharts(names[0])
         });
 }
 init();
