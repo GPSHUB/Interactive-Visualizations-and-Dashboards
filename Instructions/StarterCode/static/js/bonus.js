@@ -14,16 +14,16 @@ function gauge_chart(id) {
       gauge: {
         axis: { range: [null, 10]},
         steps: [
-          { range: [0,1], color: "#ebfaeb" },
-          { range: [1,2], color: "#adebad" },
-          { range: [2,3], color: "#85e085" },
-          { range: [3,4], color: "#5cd65c" },
-          { range: [4,5], color: "#33cc33" },
-          { range: [5,6], color: "#29a329" },
-          { range: [6,7], color: "#1f7a1f" },
-          { range: [7,8], color: "#196619" },
-          { range: [8,9], color: "#145214" },
-          { range: [9,10], color: "#051405" }
+          { range: [0,1], color: "white" },
+          { range: [1,2], color: "#e6eeff" },
+          { range: [2,3], color: "#b3ccff" },
+          { range: [3,4], color: "#80aaff" },
+          { range: [4,5], color: "#4d88ff" },
+          { range: [5,6], color: "#1a66ff" },
+          { range: [6,7], color: "#004de6" },
+          { range: [7,8], color: "#003cb3" },
+          { range: [8,9], color: "#002b80" },
+          { range: [9,10], color: "#001133" }
         ], // color picker: https://www.w3schools.com/colors/colors_picker.asp
         threshold: {
           domain: { x: [0, 1], y: [0, 1] },
