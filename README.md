@@ -13,5 +13,6 @@ In this project, I created a dashboard using HTML, JavaScript, D3 library (for a
 The second challenge was to publish the work on GIT HUB Pages.
 
 The work is deployed at the following location: 
+https://gpshub.github.io/Interactive-Visualizations-and-Dashboards/
 
  
