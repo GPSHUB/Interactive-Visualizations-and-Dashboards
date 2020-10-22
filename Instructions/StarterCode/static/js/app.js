@@ -17,18 +17,17 @@ function buildCharts(id) {
         
         let topTenSampleValues =  filterData[0].sample_values.slice(0,10).reverse();             
         let topTenOTU = filterData[0].otu_ids.slice(0,10).reverse();     
-        let topTenOTULabels =  filterData[0].otu_labels.slice(0,10).reverse();  
-        
+        let topTenOTULabels =  filterData[0].otu_labels.slice(0,10).reverse();          
             
         let labelArray = []
 
-        //concat OTU to array for labels
+        //Concatenate OTUs to array for labels
         for (let i = 0; i < 10; i++) {
             labelArray.push("OTU " + filterData[0].otu_ids[i])            
         }
         
-        // Create the Trace
-        let trace1 = {
+        // Create the Trace for the bar chart
+        let barTrace = {
             x: topTenSampleValues,
             y: labelArray,
             mode: 'markers',
@@ -38,11 +37,10 @@ function buildCharts(id) {
             orientation: 'h'
         };
         
-        // // Create the importData array for our plot
-        let data2 = [trace1];
+        let barData = [barTrace];
 
         // // Define our plot layout
-        let layout = {
+        let barLayout = {
             title: "OTU vs Sample Values",
             xaxis: { title: "Sample Values" },
             yaxis: { title: "OTU IDs" },
@@ -50,7 +48,7 @@ function buildCharts(id) {
         };
         
         // // Plot the chart to a div tag with id "bar-plot"
-        Plotly.newPlot("bar", data2, layout);
+        Plotly.newPlot("bar", barData, barLayout);
 
         //BUBBLE PLOT 
         let bubbleTrace = {
@@ -63,7 +61,9 @@ function buildCharts(id) {
             },
             text: topTenOTULabels
         };
+
         let bubbleData = [bubbleTrace];
+
         let bubbleLayout = {
             title: 'Marker Size',
             xaxis: { title: "Top 10 OTU" },
@@ -72,27 +72,29 @@ function buildCharts(id) {
             height: 600,
             width: 1200
         };
+
         Plotly.newPlot('bubble', bubbleData, bubbleLayout);
     })
 }
-//sends new id in everytime drop down changes
+
+// Each time the drop down changes, a new ID is delivered
 function optionChanged(dropDownValue) {
     buildCharts(dropDownValue);
     gauge_chart(dropDownValue)
 }
 function init() {    
-    let dropDownBtn = d3.select("#selDataset");
+    let dropDownButton = d3.select("#selDataset");
     d3.json("samples.json")
         .then(function (importData) {
             let names = importData.names
             names.forEach(name => {
-                dropDownBtn.append("option")
+                dropDownButton.append("option")
                     .text(name)
                     .attr("value", name)
             })
             importData.samples.forEach(sampleValues => console.log(sampleValues));
 
-            // for demographics area on load
+            // For demo panel upon load
             let demo = importData.metadata.filter(sample => sample.id)[0];
             console.log(demo);
             Object.entries(demo).forEach(
